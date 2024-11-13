@@ -1,0 +1,122 @@
+<html><head><base href="." target="_blank">
+<meta charset="UTF-8">
+<style>
+body {
+    background: #1a1a1a;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    overflow: hidden;
+}
+
+.question {
+    color: #fff;
+    font-size: 24px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.magic-8ball {
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle at 30% 30%, #303030 0%, #000000 80%);
+    border-radius: 50%;
+    position: relative;
+    cursor: pointer;
+    box-shadow: 0 0 40px rgba(0,0,0,0.5);
+    transition: transform 0.3s;
+}
+
+.magic-8ball:hover {
+    transform: scale(1.02);
+}
+
+.window {
+    width: 140px;
+    height: 140px;
+    background: #333;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.answer {
+    color: #fff;
+    font-size: 20px;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 0.5s;
+    padding: 20px;
+}
+
+.shaking {
+    animation: shake 0.5s ease-in-out;
+}
+
+@keyframes shake {
+    0% { transform: translate(0, 0) rotate(0deg); }
+    25% { transform: translate(5px, 5px) rotate(5deg); }
+    50% { transform: translate(0, 0) rotate(0eg); }
+    75% { transform: translate(-5px, 5px) rotate(-5deg); }
+    100% { transform: translate(0, 0) rotate(0deg); }
+}
+
+.instructions {
+    position: fixed;
+    bottom: 20px;
+    color: #666;
+    font-size: 14px;
+    text-align: center;
+}
+</style>
+</head>
+<body>
+
+<div class="question">test if vellajake is brееdable</div>
+<div class="magic-8ball">
+    <div class="window">
+        <div class="answer"></div>
+    </div>
+</div>
+<div class="instructions">Click the Magic 8 Ball to ask a question</div>
+
+<script>
+const answers = [
+    "It is certain",
+    "It is decidedly so",
+    "Without a doubt",
+    "Yes definitely",
+    "You may rely on it",
+    "As I see it, yes",
+    "Most likely",
+    "Outlook good",
+    "Yes",
+    "Signs point to yes"
+];
+
+const ball = document.querySelector('.magic-8ball');
+const answerElement = document.querySelector('.answer');
+
+ball.addEventListener('click', () => {
+    ball.classList.add('shaking');
+    answerElement.style.opacity = 0;
+    
+    setTimeout(() => {
+        ball.classList.remove('shaking');
+        const randomAnswer = answers[Math.floor(Math.random() * answers.length)];
+        answerElement.textContent = randomAnswer;
+        answerElement.style.opacity = 1;
+    }, 500);
+});
+</script>
+</body></html>
